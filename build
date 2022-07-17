@@ -1,7 +1,0 @@
-#!/bin/bash
-export JOBS_NUM=$(($(nproc)-1)) # Total number of 'CPU cores - 1'
-if [[ "$*" == *"r"* ]]; then 
-cargo build --release -j $JOBS_NUM
-else 
-cargo build -j $JOBS_NUM
-fi

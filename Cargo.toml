@@ -4,6 +4,16 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+members = [
+    "titan-engine",
+    "titan-engine/titan-experiment",
+    "titan-engine/titan-render",
+    "titan-engine/titan-window",
+]
 
 [dependencies]
+titan-experiment = { path = "./titan-engine/titan-experiment" }
+titan-window = { path = "./titan-engine/titan-window" }
 titan-engine = { path = "./titan-engine" }
+titan-render = { path = "./titan-engine/titan-render" }

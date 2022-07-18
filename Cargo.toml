@@ -5,15 +5,13 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [workspace]
-members = [
-    "titan-engine",
-    "titan-engine/titan-experiment",
-    "titan-engine/titan-render",
-    "titan-engine/titan-window",
-]
+members = ["./engine"]
 
 [dependencies]
-titan-experiment = { path = "./titan-engine/titan-experiment" }
-titan-window = { path = "./titan-engine/titan-window" }
-titan-engine = { path = "./titan-engine" }
-titan-render = { path = "./titan-engine/titan-render" }
+# crate.io dependencies
+egui = "0.18.1"
+egui_winit_vulkano = "0.17.0"
+winit = "0.26.1"
+
+# local dependencies
+engine = { path = "./engine" }

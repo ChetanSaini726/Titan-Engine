@@ -16,7 +16,7 @@ use vulkano::sync::{self, FenceSignalFuture, FlushError, GpuFuture, JoinFuture, 
 use vulkano_win::VkSurfaceBuild;
 use winit::dpi::LogicalSize;
 use winit::event_loop::EventLoop;
-use winit::window::{Window, WindowBuilder};
+use winit::window::{Fullscreen, Window, WindowBuilder};
 
 use crate::game_objects::Square;
 use crate::models::SquareModel;
@@ -60,12 +60,20 @@ impl<'a> Renderer {
             .build_vk_surface(&event_loop, instance.clone())
             .unwrap();
 
-        {
-            // window configuration
-            let window = surface.window();
-            window.set_title("Movable Square");
-            window.set_inner_size(LogicalSize::new(1920.0f32, 1080.0));
+        let monitor = event_loop
+            .primary_monitor()
+            .expect("No primary monitor detected.");
+
+        if cfg!(debug_assertions) {
+            for mode in monitor.video_modes() {
+                println!("{}", mode.clone());
+            }
         }
+        // window configuration
+        let window = surface.window();
+        window.set_title("Movable Square");
+        window.set_inner_size(LogicalSize::new(800, 600));
+        window.set_cursor_grab(true).unwrap();
 
         let device_extensions = DeviceExtensions {
             khr_swapchain: true,
